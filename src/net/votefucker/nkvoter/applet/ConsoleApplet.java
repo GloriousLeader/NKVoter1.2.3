@@ -68,11 +68,11 @@ public class ConsoleApplet extends java.applet.Applet
           // to be the program that you want your applet to run.
           // Use the variable "console", which is already defined,
           // to do inuput/output in your program.
-       try {
-       Main.main();
-       } catch (Exception e) {}
        
       console.putln("Starting");
+      try {
+      Main.main();
+      } catch (Exception e) {}
    }
    
 

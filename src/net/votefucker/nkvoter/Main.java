@@ -29,6 +29,8 @@ import java.util.Scanner;
 import java.io.*;
 import java.net.URL;
 import java.util.NoSuchElementException;
+import net.votefucker.nkvoter.applet.ConsoleCanvas;
+import net.votefucker.nkvoter.applet.ConsolePanel;
 import net.votefucker.nkvoter.core.PollDaddyVoteStrategyFactory;
 import net.votefucker.nkvoter.core.VoteDispatcher;
 import net.votefucker.nkvoter.core.VoteEngine;
@@ -63,7 +65,9 @@ public final class Main {
     private static  PollDaddyVoteStrategyFactory strategyFactory;
     private static TaskManager taskManager;
     private static BasicListener listener;
-    public static ConsoleApplet voteConsole;
+    private static ConsoleApplet voteConsole;
+    private static ConsolePanel votePanel;
+    private static ConsoleCanvas voteCanvas;
     
     /**
      * The main entry point of the program.
@@ -71,12 +75,14 @@ public final class Main {
      * @param args  The command line arguments.
      */
     public static void main() throws Exception {
+        
         voteConsole = new ConsoleApplet();
+        votePanel = new ConsolePanel();
+        voteCanvas = new ConsoleCanvas();
         voteConsole.init();
-        voteConsole.start();
+
         
-        
-        System.out.println("" 
+        System.out.println(""
                          + " _   _ _  __ __     _____ _____ _____ ____                        \n"
                          + "| \\ | | |/ / \\ \\   / / _ |_   _| ____|  _ \\    Created by     \n"
                          + "|  \\| | ' /   \\ \\ / | | | || | |  _| | |_) |   Team VoteFuckers\n"
@@ -90,6 +96,8 @@ public final class Main {
                          + "==================================================================");
         System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
         System.out.println("Would you like to use Tor? (y/n)");
+        
+        
         
         boolean useNormal = true;
         boolean useProxy = false;
