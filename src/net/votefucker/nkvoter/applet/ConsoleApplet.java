@@ -68,11 +68,17 @@ public class ConsoleApplet extends java.applet.Applet
           // to be the program that you want your applet to run.
           // Use the variable "console", which is already defined,
           // to do inuput/output in your program.
+       String arg[] = {""};
        try {
-       Main.main();
-       } catch (Exception e) {}
-       
-      console.putln("Starting");
+       if (useTor.getState()) {
+          console.putln("Starting with Tor");
+       }
+       else {
+          console.putln("Starting in Normal Mode");
+       }    
+       Main.main(arg);
+             } catch (Exception e) {}
+      
    }
    
 
@@ -80,6 +86,7 @@ public class ConsoleApplet extends java.applet.Applet
    // you don't have to understand in order to write your own console applets.
    
    private Button runButton;  // user presses this to run the program
+   private Checkbox useTor;
    
    private Thread programThread = null;     // thread for running the program; the run()
                                             //    method calls program()
@@ -133,9 +140,11 @@ public class ConsoleApplet extends java.applet.Applet
       lab.setForeground(new Color(180,0,0));
       add("North", temp);
       
-      runButton = new Button("Run the Program");
+      runButton = new Button("Start Voting");
+      useTor = new Checkbox("Use Tor",null,false);
       temp = new Panel();
       temp.setBackground(Color.white);
+      temp.add(useTor);
       temp.add(runButton);
       runButton.addActionListener(this);
       add("South",temp);

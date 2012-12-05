@@ -70,7 +70,7 @@ public final class Main {
      * 
      * @param args  The command line arguments.
      */
-    public static void main() throws Exception {
+    public static void main(String [] args) throws Exception {
         voteConsole = new ConsoleApplet();
         voteConsole.init();
         voteConsole.start();
