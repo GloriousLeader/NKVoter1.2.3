@@ -100,6 +100,11 @@ public class ConsoleApplet extends java.applet.Applet
       stopProgram();
    }
    
+   public boolean isTor() {
+       System.out.println(useTor.getState());
+       return useTor.getState();
+   }
+   
    synchronized private void startProgram() {
       runButton.setLabel("Abort Program");
       if (!firstTime) {

@@ -70,6 +70,7 @@ public final class Main {
      * 
      * @param args  The command line arguments.
      */
+    
     public static void main(String [] args) throws Exception {
         voteConsole = new ConsoleApplet();
         voteConsole.init();
@@ -89,16 +90,12 @@ public final class Main {
                          + "(" + VERSION + ")                                                 \n"
                          + "==================================================================");
         System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
-        System.out.println("Would you like to use Tor? (y/n)");
         
-        boolean useNormal = true;
-        boolean useProxy = false;
+            boolean useNormal = true;
+            boolean useTor = voteConsole.isTor();
+            System.out.println(useTor);
         
-        int input = System.in.read();
-        
-        boolean useTor = input == 'y';
-        
-        if(useTor || useProxy)
+        if(useTor)
         {
             useNormal = false;
         }
@@ -123,56 +120,7 @@ public final class Main {
             setupDispatchTasks("NORMAL", socketFactory);
         }
         
-        if(useProxy)
-        {
-            System.out.println("What is the proxy's ip address and port? (only use Socks4/5 proxies)");
-            System.out.println("(e.g.: 123.123.123.123:1337)"); 
-            
-            InputStreamReader pinput = new InputStreamReader(System.in);
-            BufferedReader ipScan = new BufferedReader(pinput);
-            
-            int l = System.in.read(); //Mac Fuckup Protection
-            
-            String[] addressParts = ipScan.readLine().split(":");
-            String[] ipParts = addressParts[0].split("\\.");
-            
-            while((ipParts.length != 4) || (addressParts[1].length() < 2)) {
-                    System.out.println("You've entered a wrong IP Adress or Port number, please re-enter");
-                    pinput = new InputStreamReader(System.in);
-                    ipScan = new BufferedReader(pinput);
-                    l = System.in.read(); //Mac Fuckup Protection
-                    addressParts = ipScan.readLine().split(":");
-                    ipParts = addressParts[0].split("\\.");
-            }
-            
-            byte[] ipbytes = new byte[4];
-            
-           for(byte i=0;i<4;i++) 
-            {
-                try{
-                    ipbytes[i] = (byte)Integer.parseInt(ipParts[i]);
-                } catch(Exception e)
-                {
-            System.out.print("Wrong format for Proxy Adress");
-            }           	
-            }
-            
-            int portNum = 0; 
-            try{
-                   portNum = Integer.parseInt(addressParts[1]);
-                } catch(NumberFormatException  e)
-                {
-            System.out.print("Wrong format for Proxy Adress");
-            }  
-            
-            if(ipParts.length == 4 && portNum != 0) {
-           
-                InetSocketAddress iSock = new InetSocketAddress(InetAddress.getByAddress(ipbytes), portNum);
-                ProxySocketFactory socketFactory = new ProxySocketFactory(iSock);
-
-                setupDispatchTasks("PROXY", socketFactory);
-            }
-        }
+       
         
         taskManager.submit(new PulseEngineTask(DELAY_BETWEEN_DUMPS, engine));
     }
