@@ -70,7 +70,12 @@ public final class Main {
      * 
      * @param args  The command line arguments.
      */
-    public static void main(String[] args) throws Exception {
+    public static void main() throws Exception {
+        voteConsole = new ConsoleApplet();
+        voteConsole.init();
+        voteConsole.start();
+        
+        
         System.out.println("" 
                          + " _   _ _  __ __     _____ _____ _____ ____                        \n"
                          + "| \\ | | |/ / \\ \\   / / _ |_   _| ____|  _ \\    Created by     \n"
@@ -98,11 +103,11 @@ public final class Main {
             useNormal = false;
         }
         
-        voteConsole = new ConsoleApplet();
         strategyFactory = new PollDaddyVoteStrategyFactory();
         engine = NKVoter.getSingleton().getEngine();
         taskManager = NKVoter.getSingleton().getTaskManager();
         listener = new BasicListener();
+        
         
         if(useTor) {
             TorSocketFactory socketFactory = new TorSocketFactory();

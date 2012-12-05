@@ -42,11 +42,17 @@ package net.votefucker.nkvoter.applet;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.Object;
+import net.votefucker.nkvoter.Version;
+import net.votefucker.nkvoter.Main;
 
 public class ConsoleApplet extends java.applet.Applet
                            implements Runnable, ActionListener {
+    
+   private static final Version VERSION = new Version(1, 2, 3);
+   public static final Main NKVoter = new Main();
                            
-   protected String title = "Java Console I/O";  // (Used for compatibility with previous versions of Console Applet)
+   protected String title = "NKVoter "+VERSION;  
+   
 
    protected String getTitle() {
        // Return a label to appears over the console;
@@ -62,7 +68,11 @@ public class ConsoleApplet extends java.applet.Applet
           // to be the program that you want your applet to run.
           // Use the variable "console", which is already defined,
           // to do inuput/output in your program.
-      console.putln("Hello World!");
+       try {
+       Main.main();
+       } catch (Exception e) {}
+       
+      console.putln("Starting");
    }
    
 
