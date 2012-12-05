@@ -41,7 +41,11 @@ package net.votefucker.nkvoter.applet;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.lang.Object;
+import javax.swing.SwingUtilities;
 import net.votefucker.nkvoter.Version;
 import net.votefucker.nkvoter.Main;
 
@@ -154,6 +158,8 @@ public class ConsoleApplet extends java.applet.Applet
       runButton.addActionListener(this);
       add("South",temp);
       
+      redirectSystemStreams();
+      
    }
 
    public Insets getInsets() {
@@ -179,5 +185,35 @@ public class ConsoleApplet extends java.applet.Applet
       else
          startProgram();
    }
+   
+    private void updateTextArea(final String text) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                console.put(text);
+            }
+        });
+    }
+
+    private void redirectSystemStreams() {
+        OutputStream out = new OutputStream() {
+            @Override
+            public void write(int b) throws IOException {
+                updateTextArea(String.valueOf((char) b));
+            }
+
+            @Override
+            public void write(byte[] b, int off, int len) throws IOException {
+                updateTextArea(new String(b, off, len));
+            }
+
+            @Override
+            public void write(byte[] b) throws IOException {
+                write(b, 0, b.length);
+            }
+        };
+
+        System.setOut(new PrintStream(out, true));
+        System.setErr(new PrintStream(out, true));
+    }
    
 }
