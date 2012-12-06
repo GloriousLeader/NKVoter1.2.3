@@ -71,8 +71,8 @@ public final class Main {
      * @param args  The command line arguments.
      */
     
-    public static void main(String [] args) throws Exception {
-        
+    public static void main(ConsoleApplet app) throws Exception {
+        voteConsole = app;
         
         System.out.println("" 
                          + " _   _ _  __ __     _____ _____ _____ ____                        \n"

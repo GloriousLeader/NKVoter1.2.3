@@ -80,7 +80,7 @@ public class ConsoleApplet extends java.applet.Applet
        else {
           console.putln("Starting in Normal Mode");
        }    
-       Main.main(arg);
+       Main.main(this);
              } catch (Exception e) {}
       
    }
