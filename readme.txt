@@ -1,8 +1,6 @@
 To run, use the LaunchApplet.html under the put_this_shit_on_the_server directory
 if it doesn't work at first (it just freezes with the java logo or something), try refreshing the page
-
-
-
+Also, the applet will print out "Updating voteamounts" numerous times between the 10-minute anti-ban delays; this is perfectly normal
 
 
 
