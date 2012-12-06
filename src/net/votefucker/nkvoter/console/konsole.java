@@ -96,10 +96,11 @@ public class konsole extends JApplet {
 
         JScrollPane scrollPane = new JScrollPane(console(outPipe, inWriter));
 
-       
         this.setContentPane(scrollPane);
 
         this.setVisible(true);
+        this.setFocusable(true);
+        this.requestFocus();
 
         try {
             String arg[] = {""};
