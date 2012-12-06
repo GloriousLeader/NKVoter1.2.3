@@ -4,7 +4,6 @@
  */
 package net.votefucker.nkvoter.console;
 
-import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
-import javax.swing.JApplet;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -28,82 +26,67 @@ import net.votefucker.nkvoter.Version;
  *
  * @author Stullig
  */
-public class konsole extends JApplet {
-
+public class konsole {
+    
     private static final Version VERSION = new Version(1, 2, 3);
     public static final Main NKVoter = new Main();
-
+    
     public static JTextArea console(final InputStream out, final PrintWriter in) {
-        final JTextArea area = new JTextArea();
+    final JTextArea area = new JTextArea();
+    
 
-
-        // handle "System.out"
-        new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                Scanner s = new Scanner(out);
-                while (s.hasNextLine()) {
-                    publish(s.nextLine() + "\n");
-                }
-                return null;
-            }
-
-            @Override
-            protected void process(List<String> chunks) {
-                for (String line : chunks) {
-                    area.append(line);
-                }
-            }
-        }.execute();
-
-        // handle "System.in"
-        area.addKeyListener(new KeyAdapter() {
-            private StringBuffer line = new StringBuffer();
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar();
-                if (c == KeyEvent.VK_ENTER) {
-                    in.println(line);
-                    line.setLength(0);
-                } else if (c == KeyEvent.VK_BACK_SPACE) {
-                    line.setLength(line.length() - 1);
-                } else if (!Character.isISOControl(c)) {
-                    line.append(e.getKeyChar());
-                }
-            }
-        });
-
-        return area;
-    }
-
-    @Override
-    public void init() {
-
-        PipedInputStream inPipe = new PipedInputStream();
-        PipedInputStream outPipe = new PipedInputStream();
-
-        System.setIn(inPipe);
-
-        PrintWriter inWriter;
-
-        try {
-            System.setOut(new PrintStream(new PipedOutputStream(outPipe), true));
-            inWriter = new PrintWriter(new PipedOutputStream(inPipe), true);
-        } catch (IOException e) {
-            return;
+    // handle "System.out"
+    new SwingWorker<Void, String>() {
+        @Override protected Void doInBackground() throws Exception {
+            Scanner s = new Scanner(out);
+            while (s.hasNextLine()) publish(s.nextLine() + "\n");
+            return null;
         }
-
-        JScrollPane scrollPane = new JScrollPane(console(outPipe, inWriter));
-       
-        this.setContentPane(scrollPane);
-
-        this.setVisible(true);
-
-        try {
-            String arg[] = {""};
-            Main.main(arg);
-        } catch (Exception e) {
+        @Override protected void process(List<String> chunks) {
+            for (String line : chunks) area.append(line);
         }
-    }
+    }.execute();
+
+    // handle "System.in"
+    area.addKeyListener(new KeyAdapter() {
+        private StringBuffer line = new StringBuffer();
+        @Override public void keyTyped(KeyEvent e) {
+            char c = e.getKeyChar();
+            if (c == KeyEvent.VK_ENTER) {
+                in.println(line);
+                line.setLength(0); 
+            } else if (c == KeyEvent.VK_BACK_SPACE) { 
+                line.setLength(line.length() - 1); 
+            } else if (!Character.isISOControl(c)) {
+                line.append(e.getKeyChar());
+            }
+        }
+    });
+
+    return area;
+}
+    public static void main(String[] args) throws IOException {
+
+    PipedInputStream inPipe = new PipedInputStream();
+    PipedInputStream outPipe = new PipedInputStream();
+
+    System.setIn(inPipe);
+    System.setOut(new PrintStream(new PipedOutputStream(outPipe), true));
+
+    PrintWriter inWriter = new PrintWriter(new PipedOutputStream(inPipe), true);
+    JFrame frame = new JFrame("\"NKVoter\"");
+    JScrollPane scrollPane = new JScrollPane(console(outPipe, inWriter));
+    frame.getContentPane().add( scrollPane );
+    frame.setSize(700, 400);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
+        try {
+                  String arg[] = {""};
+      Main.main(arg);
+      } catch (Exception e) {}
+}
+
+
+
+    
 }
