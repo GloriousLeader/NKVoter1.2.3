@@ -157,7 +157,8 @@ public class ConsoleApplet extends java.applet.Applet
       temp.add(runButton);
       runButton.addActionListener(this);
       add("South",temp);
-      
+      doLayout();
+      validate();
       redirectSystemStreams();
       
    }
