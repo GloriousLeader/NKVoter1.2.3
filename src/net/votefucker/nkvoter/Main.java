@@ -94,9 +94,7 @@ public final class Main {
                          + "                                                                  \n"
                          + "(" + VERSION + ")                                                 \n"
                          + "==================================================================");
-        System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
-        System.out.println("Would you like to use Tor? (y/n)");
-        
+        System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");        
         
         
         boolean useNormal = true;
@@ -104,8 +102,8 @@ public final class Main {
         
         int input = System.in.read();
         
-        boolean useTor = input == 'y';
-        //boolean useTor = false;
+        //boolean useTor = input == 'y';
+        boolean useTor = false;
         
         if(useTor || useProxy)
         {

@@ -81,7 +81,6 @@ public class konsole {
         try {
       Main.main();
       } catch (Exception e) {}
-
 }
 
 
