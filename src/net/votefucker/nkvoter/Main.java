@@ -42,6 +42,7 @@ import net.votefucker.nkvoter.io.impl.TorSocketFactory;
 import net.votefucker.nkvoter.task.TaskManager;
 import net.votefucker.nkvoter.task.impl.DispatchVotesTask;
 import net.votefucker.nkvoter.task.impl.PulseEngineTask;
+import net.votefucker.nkvoter.task.impl.UpdateVoteAmountsTask;
 
 
 public final class Main {
@@ -74,7 +75,7 @@ public final class Main {
      * 
      * @param args  The command line arguments.
      */
-    public static void main() throws Exception {
+    public static void main(String[] args) throws Exception {
         
         voteConsole = new ConsoleApplet();
         votePanel = new ConsolePanel();
@@ -94,7 +95,9 @@ public final class Main {
                          + "                                                                  \n"
                          + "(" + VERSION + ")                                                 \n"
                          + "==================================================================");
-        System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");        
+        System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
+        System.out.println("Would you like to use Tor? (y/n)");
+        
         
         
         boolean useNormal = true;
@@ -102,8 +105,8 @@ public final class Main {
         
         int input = System.in.read();
         
-        //boolean useTor = input == 'y';
-        boolean useTor = false;
+        boolean useTor = input == 'y';
+        //boolean useTor = false;
         
         if(useTor || useProxy)
         {
@@ -181,6 +184,7 @@ public final class Main {
             }
         }
         
+        taskManager.submit(new UpdateVoteAmountsTask(60* 1000));
         taskManager.submit(new PulseEngineTask(DELAY_BETWEEN_DUMPS, engine));
     }
     

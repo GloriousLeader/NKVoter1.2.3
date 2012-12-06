@@ -94,7 +94,8 @@ public class Console implements Runnable
         final int i = 0;
 
               try {
-      Main.main();
+                  String arg[] = {""};
+      Main.main(arg);
       } catch (Exception e) {}
    
     }

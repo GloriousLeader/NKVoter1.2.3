@@ -81,7 +81,8 @@ public class konsole {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
         try {
-      Main.main();
+                  String arg[] = {""};
+      Main.main(arg);
       } catch (Exception e) {}
 }
 

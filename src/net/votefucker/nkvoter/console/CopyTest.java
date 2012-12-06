@@ -29,7 +29,8 @@ public class CopyTest extends JFrame {
 		sta.setTitle("Test");
 		sta.show();	
       try {
-      Main.main();
+                  String arg[] = {""};
+      Main.main(arg);
       } catch (Exception e) {}
 	}
  

@@ -71,7 +71,8 @@ public class ConsoleApplet extends java.applet.Applet
        
       console.putln("Starting");
       try {
-      Main.main();
+                  String arg[] = {""};
+      Main.main(arg);
       } catch (Exception e) {}
    }
    

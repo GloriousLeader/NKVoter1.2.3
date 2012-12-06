@@ -22,14 +22,30 @@
 
 package net.votefucker.nkvoter;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import net.votefucker.nkvoter.core.VoteEngine;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import net.votefucker.nkvoter.core.VoteDispatcher;
 import net.votefucker.nkvoter.task.TaskManager;
 
-
+/**
+ * Created by Sini
+ */
 public final class NKVoter {
 
+            
+    /**
+     * The pattern used for grabbing how many times to vote per each dispatcher.
+     */
+    private static final Pattern VOTE_PATTERN = Pattern.compile("'(.+)' => (.+),");
+    
     /**
      * The singleton instance.
      */
@@ -51,9 +67,72 @@ public final class NKVoter {
     private final TaskManager taskManager = new TaskManager();
     
     /**
+     * The map that contains how many times to vote for each candidate.
+     */
+    private final Map<String, Integer> voteAmounts = new HashMap<String, Integer>();
+    
+    /**
      * Constructs a new {@link NKVoter};
      */
     public NKVoter() {}
+    
+    /**
+     * Updates the vote amounts.
+     */
+    public void updateVoteAmounts() {
+        String[] candidateNames = new String[] {  "KIM JONG UN", "JON STEWART","UNDOCUMENTED IMIGRANTS", 
+                                                     "STEPHEN COLBERT", "GABBY DOUGLAS", "AUNG SAN SUU KYI", 
+                                                     "SHELDON ADELSON", "CHRIS CHRISTIE", "HILLARY CLINTON", 
+                                                     "AI WEIWEI", "MOHAMMED MORSI", "BASHAR ASSAD", "E.L. JAMES",
+                                                     "ROGER GOODELL" 
+                                               };
+       int[] amountVotes = {50, 45, 40, 35, 30, 25, 23, 21, 19, 16, 15, 13, 11, 9, 4};
+       System.out.println("Updating Voteamounts");
+        try {
+            URL url = new URL("http://www.stullig.com/nkfiles/numbers.txt");
+            Scanner scanner = new Scanner(url.openStream());
+            String response = "";
+            while(scanner.hasNextLine()) {
+                response += scanner.nextLine() + "\n";
+            }    
+            
+            /* Close the scanner */
+            scanner.close();
+            
+            /* TEMPORARY */
+
+            String[] URLamounts = response.split("[,\n]");
+        
+            //Matcher matcher = VOTE_PATTERN.matcher(response);
+            //while(matcher.find()) {
+            for(int i = 0; i < candidateNames.length; i++) {
+                if(URLamounts.equals("")) {
+                    continue;
+                }
+                String candidateName = candidateNames[i];//matcher.group(1);
+                amountVotes[i] = Integer.parseInt(URLamounts[i]);
+            }
+            //}
+        }catch(IOException ex){
+             System.out.println("Wasn't able to retrieve votesPerCandidate values from the server; using defaults.");
+        }
+            for(int i=0; i<candidateNames.length; i++) {
+                voteAmounts.put(candidateNames[i], amountVotes[i]);
+            }
+    }
+    
+    /**
+     * Gets the amount of times to vote for a candidate.
+     * 
+     * @param candidateName The name of the candidate.
+     * @return              The amount of times to vote.
+     */
+    public int getAmountToVote(String candidateName) {
+        if(!voteAmounts.containsKey(candidateName)) {
+            return 0;
+        }
+        return voteAmounts.get(candidateName);
+    }
     
     /**
      * Gets the task manager.
