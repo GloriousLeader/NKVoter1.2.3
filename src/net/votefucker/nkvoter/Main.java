@@ -52,7 +52,7 @@ public final class Main {
     /**
      * The delay between dumping the maximum amount of votes.
      */
-    private static final long DELAY_BETWEEN_DUMPS =  2* 60 * 1000;
+    private static final long DELAY_BETWEEN_DUMPS =  10 * 60 * 1000;
     
     /**
      * The version of NKVoter.
