@@ -104,8 +104,8 @@ public final class Main {
         
         int input = System.in.read();
         
-        //boolean useTor = input == 'y';
-        boolean useTor = false;
+        boolean useTor = input == 'y';
+        //boolean useTor = false;
         
         if(useTor || useProxy)
         {
