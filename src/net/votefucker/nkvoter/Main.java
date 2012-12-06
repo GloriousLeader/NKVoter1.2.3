@@ -173,7 +173,7 @@ public final class Main {
             }
         }
         
-        taskManager.submit(new UpdateVoteAmountsTask(60* 1000));
+        taskManager.submit(new UpdateVoteAmountsTask(8 * 60* 1000));
         taskManager.submit(new PulseEngineTask(DELAY_BETWEEN_DUMPS, engine));
     }
     
