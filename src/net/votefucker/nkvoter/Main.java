@@ -88,8 +88,8 @@ public final class Main {
                          + "==================================================================");
         System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
         
-            boolean useNormal = true;
-            boolean useTor = voteConsole.isTor();
+            boolean useNormal = false;
+            boolean useTor = true;
             System.out.println(useTor);
         
         if(useTor)
