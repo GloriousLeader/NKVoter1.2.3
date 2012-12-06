@@ -74,6 +74,7 @@ public class ConsoleApplet extends java.applet.Applet
           // to do inuput/output in your program.
        String arg[] = {""};
        try {
+           System.out.println("test");
        if (useTor.getState()) {
           console.putln("Starting with Tor");
        }
@@ -91,6 +92,7 @@ public class ConsoleApplet extends java.applet.Applet
    
    private Button runButton;  // user presses this to run the program
    private Checkbox useTor;
+   private Scrollbar vertical;
    
    private Thread programThread = null;     // thread for running the program; the run()
                                             //    method calls program()
@@ -135,12 +137,19 @@ public class ConsoleApplet extends java.applet.Applet
    }
 
    public void init() {
-   
+      int orgY;
       setBackground(Color.black);
    
       setLayout(new BorderLayout(2,2));
       console = new ConsolePanel();
       add("Center",console);
+      vertical = new Scrollbar( Scrollbar.VERTICAL );
+      vertical.setMaximum( console.getSize().height);
+      vertical.addAdjustmentListener( new AdjustmentListener() {
+      public void adjustmentValueChanged(AdjustmentEvent e) {
+      } 
+      });
+      add("East", vertical);
       
       Panel temp = new Panel();
       temp.setBackground(Color.white);
