@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 import net.votefucker.nkvoter.Main;
@@ -74,7 +75,8 @@ public class konsole {
 
     PrintWriter inWriter = new PrintWriter(new PipedOutputStream(inPipe), true);
     JFrame frame = new JFrame("\"NKVoter\"");
-    frame.add(console(outPipe, inWriter));
+    JScrollPane scrollPane = new JScrollPane(console(outPipe, inWriter));
+    frame.getContentPane().add( scrollPane );
     frame.setSize(700, 400);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
