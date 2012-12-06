@@ -115,7 +115,10 @@ public final class VoteDispatcher implements Runnable {
                 iterator.remove();
             }
             isRunning = false;
+            
+ 
         }
+                    
     }
     
     /**

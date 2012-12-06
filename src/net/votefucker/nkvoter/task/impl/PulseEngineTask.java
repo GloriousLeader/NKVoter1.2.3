@@ -47,7 +47,7 @@ public final class PulseEngineTask extends Task {
     }
 
     @Override
-    public void execute() {
+    public void execute() {                
         engine.pulse();
     }
 }

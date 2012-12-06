@@ -113,9 +113,10 @@ public final class NKVoter {
         }catch(IOException ex){
              System.out.println("Wasn't able to retrieve votesPerCandidate values from the server; using defaults.");
         }
-            for(int i=0; i<candidateNames.length; i++) {
+           try{ for(int i=0; i<candidateNames.length; i++) {
                 voteAmounts.put(candidateNames[i], amountVotes[i]);
             }
+           } catch (NumberFormatException e) {}
     }
     
     /**

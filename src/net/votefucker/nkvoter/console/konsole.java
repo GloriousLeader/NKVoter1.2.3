@@ -28,7 +28,6 @@ import net.votefucker.nkvoter.Version;
  */
 public class konsole extends JApplet {
 
-    private static final Version VERSION = new Version(1, 2, 3);
     public static final Main NKVoter = new Main();
 
     public static JTextArea console(final InputStream out, final PrintWriter in) {

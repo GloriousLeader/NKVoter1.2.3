@@ -52,12 +52,12 @@ public final class Main {
     /**
      * The delay between dumping the maximum amount of votes.
      */
-    private static final long DELAY_BETWEEN_DUMPS = 10 * 60 * 1000;
+    private static final long DELAY_BETWEEN_DUMPS =  2* 60 * 1000;
     
     /**
      * The version of NKVoter.
      */
-    private static final Version VERSION = new Version(1, 2, 3);
+    public static final Version VERSION = new Version(1, 2, 4);
     
     private static VoteEngine engine;
     private static  PollDaddyVoteStrategyFactory strategyFactory;
@@ -73,6 +73,7 @@ public final class Main {
 
         
         System.out.println(""
+                         + "For our Grorious Reader:\n"
                          + " _   _ _  __ __     _____ _____ _____ ____                        \n"
                          + "| \\ | | |/ / \\ \\   / / _ |_   _| ____|  _ \\    Created by     \n"
                          + "|  \\| | ' /   \\ \\ / | | | || | |  _| | |_) |   Team VoteFuckers\n"
@@ -82,10 +83,9 @@ public final class Main {
                          + "CREDITS to Kim Jong Un, Sini, Bla, Onon, Brother, Pholey, John,   \n"
                          + "           Orion, TheFeel, Drunkenevil, #opfuckmorsy              \n"
                          + "                                                                  \n"
-                         + "(" + VERSION + ")                                                 \n"
-                         + "==================================================================");
-        System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
-        System.out.println("Would you like to use Tor? (y/n)");
+                         + "(" + VERSION + ") KJUGASCHAMBERS                                  \n"
+                         + "==================================================================\n");
+        System.out.println("Would you like to use Tor? (Requires Tor running on your machine) (y/n)");
         
         
         
@@ -101,6 +101,9 @@ public final class Main {
         {
             useNormal = false;
         }
+        System.out.println("\n");
+        System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
+        System.out.println("TO AVOID GETTING BANNED. SO KEEP CALM AND BE GLORIOUS. \n");
         
         strategyFactory = new PollDaddyVoteStrategyFactory();
         engine = NKVoter.getSingleton().getEngine();
@@ -110,14 +113,12 @@ public final class Main {
         
         if(useTor) {
             TorSocketFactory socketFactory = new TorSocketFactory();
-            VoteDispatcher dispatcher = new VoteDispatcher(socketFactory, strategyFactory.createStrategy("KJU"));
             
             setupDispatchTasks("TOR", socketFactory);
         }
 
         if(useNormal) {
             NormalSocketFactory socketFactory = new NormalSocketFactory();
-            VoteDispatcher dispatcher = new VoteDispatcher(socketFactory, strategyFactory.createStrategy("KJU"));
             
             setupDispatchTasks("NORMAL", socketFactory);
         }
@@ -173,7 +174,7 @@ public final class Main {
             }
         }
         
-        taskManager.submit(new UpdateVoteAmountsTask(8 * 60* 1000));
+        taskManager.submit(new UpdateVoteAmountsTask(15 * 60* 1000));
         taskManager.submit(new PulseEngineTask(DELAY_BETWEEN_DUMPS, engine));
     }
     
