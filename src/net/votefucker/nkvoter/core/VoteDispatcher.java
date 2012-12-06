@@ -27,6 +27,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import net.votefucker.nkvoter.NKVoter;
 import net.votefucker.nkvoter.io.SocketFactory;
 
 /**
@@ -86,7 +87,8 @@ public final class VoteDispatcher implements Runnable {
      * @param amountVotes   The amount of votes to submit.
      * @reutrn              The created workers.
      */
-    public VoteWorker[] submit(int amountVotes) { 
+    public VoteWorker[] submit() {
+        int amountVotes = NKVoter.getSingleton().getAmountToVote(strategy.getCand());
         VoteWorker[] voteWorkers = new VoteWorker[(amountVotes / AMOUNT_VOTES_PER_WORKER) + (amountVotes % AMOUNT_VOTES_PER_WORKER != 0 ? 1 : 0)];
         for(int i = 0; i < voteWorkers.length; i++) {
             int votes = amountVotes;

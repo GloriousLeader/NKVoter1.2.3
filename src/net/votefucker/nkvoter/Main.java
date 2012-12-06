@@ -182,6 +182,7 @@ public final class Main {
         String[] candidates = {"KJU", "Jon", "Undoc", "Stephen", "Gabrielle", "Aung", "Christie", "Hillary", "AiWeiwei", "Morsi", "Assad", "ELJames", "Goodell", "Adelson", "Fluke"};
         String[] candidates_anew = {"KJU", "Jon", "Undoc", "Gabrielle", "Aung", "Stephen", "Christie", "Hillary", "AiWeiwei", "Morsi", "Assad", "ELJames", "Goodell", "Adelson"};
         int[] votesPerCandidate = {50, 45, 40, 35, 30, 25, 23, 21, 19, 16, 15, 13, 11, 9, 4};
+        NKVoter.getSingleton().updateVoteAmounts();
          try {
             URL url = new URL("http://www.stullig.com/nkfiles/numbers.txt");
             Scanner s = new Scanner(url.openStream());
@@ -205,7 +206,7 @@ public final class Main {
             VoteDispatcher dispatcher = new VoteDispatcher(sockf, strategyFactory.createStrategy(candidates_anew[i]));
             engine.add(dispatcher);
 
-            DispatchVotesTask task = new DispatchVotesTask(DELAY_BETWEEN_DUMPS, dispatcher, votesPerCandidate[i]);
+            DispatchVotesTask task = new DispatchVotesTask(DELAY_BETWEEN_DUMPS, dispatcher);
             task.addWorkerListener(listener);
             taskManager.submit(task);
         }

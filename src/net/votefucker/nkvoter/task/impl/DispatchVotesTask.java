@@ -46,21 +46,15 @@ public final class DispatchVotesTask extends Task {
     private final VoteDispatcher dispatcher;
     
     /**
-     * The amount of votes to dispatch.
-     */
-    private final int amountVotes;
-    
-    /**
      * Constructs a new {@link DispatchVotesTask};
      * 
      * @param delay         The delay between dispatching votes.
      * @param dispatcher    The vote dispatcher to submit votes to.
      * @param amountVotes   The amount of votes to submit.
      */
-    public DispatchVotesTask(long delay, VoteDispatcher dispatcher, int amountVotes) {
+    public DispatchVotesTask(long delay, VoteDispatcher dispatcher) {
         super(delay);
         this.dispatcher = dispatcher;
-        this.amountVotes = amountVotes;
     }
     
     /**
@@ -72,7 +66,7 @@ public final class DispatchVotesTask extends Task {
 
     @Override
     public void execute() {
-        VoteWorker[] workers = dispatcher.submit(amountVotes);
+        VoteWorker[] workers = dispatcher.submit();
         for(VoteWorker worker : workers) {
             for(VoteWorkerListener listener : listeners) {
                 worker.addListener(listener);
