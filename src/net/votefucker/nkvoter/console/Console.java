@@ -42,34 +42,41 @@ public class Console implements Runnable
             System.err.println("im here");
         }
         catch (IOException ioe)
-        {
+        {   
             JOptionPane.showMessageDialog(null,
                 "Error redirecting output : "+ioe.getMessage());
         }
     }
 
-    public static void redirectOutput(JTextArea displayPane)
-    {
-        Console.redirectOut(displayPane);
-        Console.redirectErr(displayPane);
-    }
+        private static void updateTextArea(final JTextArea displayPane, final String text) {
+                 PipedOutputStream pos = new PipedOutputStream();
+                Console console = new Console(displayPane, pos);
+                new Thread(console).start();
+                console.displayPane.append(text);
+            }
+        
+    
 
-    public static void redirectOut(JTextArea displayPane)
-    {
-        PipedOutputStream pos = new PipedOutputStream();
-        System.setOut( new PrintStream(pos, true) );
+    private static void redirectSystemStreams(final JTextArea displayPane) {
+        OutputStream out = new OutputStream() {
+            @Override
+            public void write(int b) throws IOException {
+                updateTextArea(displayPane, String.valueOf((char) b));
+            }
 
-        Console console = new Console(displayPane, pos);
-        new Thread(console).start();
-    }
+            @Override
+            public void write(byte[] b, int off, int len) throws IOException {
+                updateTextArea(displayPane, new String(b, off, len));
+            }
 
-    public static void redirectErr(JTextArea displayPane)
-    {
-        PipedOutputStream pos = new PipedOutputStream();
-        System.setErr( new PrintStream(pos, true) );
+            @Override
+            public void write(byte[] b) throws IOException {
+                write(b, 0, b.length);
+            }
+        };
 
-        Console console = new Console(displayPane, pos);
-        new Thread(console).start();
+        System.setOut(new PrintStream(out, true));
+        System.setErr(new PrintStream(out, true));
     }
 
     public static void main(String[] args)
@@ -83,7 +90,7 @@ public class Console implements Runnable
         frame.setSize(700, 400);
         frame.setVisible(true);
 
-        Console.redirectOutput( textArea );
+        Console.redirectSystemStreams( textArea );
         final int i = 0;
 
               try {
