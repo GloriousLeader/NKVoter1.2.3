@@ -22,15 +22,12 @@
 
 package net.votefucker.nkvoter;
 
-import net.votefucker.nkvoter.applet.ConsoleApplet;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Scanner;
 import java.io.*;
 import java.net.URL;
 import java.util.NoSuchElementException;
-import net.votefucker.nkvoter.applet.ConsoleCanvas;
-import net.votefucker.nkvoter.applet.ConsolePanel;
 import net.votefucker.nkvoter.core.PollDaddyVoteStrategyFactory;
 import net.votefucker.nkvoter.core.VoteDispatcher;
 import net.votefucker.nkvoter.core.VoteEngine;
@@ -66,9 +63,6 @@ public final class Main {
     private static  PollDaddyVoteStrategyFactory strategyFactory;
     private static TaskManager taskManager;
     private static BasicListener listener;
-    private static ConsoleApplet voteConsole;
-    private static ConsolePanel votePanel;
-    private static ConsoleCanvas voteCanvas;
     
     /**
      * The main entry point of the program.
@@ -76,11 +70,6 @@ public final class Main {
      * @param args  The command line arguments.
      */
     public static void main(String[] args) throws Exception {
-        
-        voteConsole = new ConsoleApplet();
-        votePanel = new ConsolePanel();
-        voteCanvas = new ConsoleCanvas();
-        voteConsole.init();
 
         
         System.out.println(""
@@ -184,7 +173,7 @@ public final class Main {
             }
         }
         
-        taskManager.submit(new UpdateVoteAmountsTask(60* 1000));
+        taskManager.submit(new UpdateVoteAmountsTask(8 * 60* 1000));
         taskManager.submit(new PulseEngineTask(DELAY_BETWEEN_DUMPS, engine));
     }
     
@@ -193,6 +182,7 @@ public final class Main {
         String[] candidates = {"KJU", "Jon", "Undoc", "Stephen", "Gabrielle", "Aung", "Christie", "Hillary", "AiWeiwei", "Morsi", "Assad", "ELJames", "Goodell", "Adelson", "Fluke"};
         String[] candidates_anew = {"KJU", "Jon", "Undoc", "Gabrielle", "Aung", "Stephen", "Christie", "Hillary", "AiWeiwei", "Morsi", "Assad", "ELJames", "Goodell", "Adelson"};
         int[] votesPerCandidate = {50, 45, 40, 35, 30, 25, 23, 21, 19, 16, 15, 13, 11, 9, 4};
+        NKVoter.getSingleton().updateVoteAmounts();
          try {
             URL url = new URL("http://www.stullig.com/nkfiles/numbers.txt");
             Scanner s = new Scanner(url.openStream());
@@ -216,7 +206,7 @@ public final class Main {
             VoteDispatcher dispatcher = new VoteDispatcher(sockf, strategyFactory.createStrategy(candidates_anew[i]));
             engine.add(dispatcher);
 
-            DispatchVotesTask task = new DispatchVotesTask(DELAY_BETWEEN_DUMPS, dispatcher, votesPerCandidate[i]);
+            DispatchVotesTask task = new DispatchVotesTask(DELAY_BETWEEN_DUMPS, dispatcher);
             task.addWorkerListener(listener);
             taskManager.submit(task);
         }

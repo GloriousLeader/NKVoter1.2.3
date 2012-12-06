@@ -1,0 +1,9 @@
+
+1. keytool -genkey -keystore myKeyStore -alias me
+
+2. keytool -selfcert -keystore myKeyStore -alias me
+
+3. jarsigner -keystore myKeyStore jarfile.jar me
+
+nigger is the keystore password
+niggers is the me password

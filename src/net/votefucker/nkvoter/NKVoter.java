@@ -80,12 +80,7 @@ public final class NKVoter {
      * Updates the vote amounts.
      */
     public void updateVoteAmounts() {
-        String[] candidateNames = new String[] {  "KIM JONG UN", "JON STEWART","UNDOCUMENTED IMIGRANTS", 
-                                                     "STEPHEN COLBERT", "GABBY DOUGLAS", "AUNG SAN SUU KYI", 
-                                                     "SHELDON ADELSON", "CHRIS CHRISTIE", "HILLARY CLINTON", 
-                                                     "AI WEIWEI", "MOHAMMED MORSI", "BASHAR ASSAD", "E.L. JAMES",
-                                                     "ROGER GOODELL" 
-                                               };
+        String[] candidateNames = new String[] {  "KJU", "Jon", "Undoc", "Gabrielle", "Aung", "Stephen", "Christie", "Hillary", "AiWeiwei", "Morsi", "Assad", "ELJames", "Goodell", "Adelson"};
        int[] amountVotes = {50, 45, 40, 35, 30, 25, 23, 21, 19, 16, 15, 13, 11, 9, 4};
        System.out.println("Updating Voteamounts");
         try {
@@ -113,6 +108,7 @@ public final class NKVoter {
                 amountVotes[i] = Integer.parseInt(URLamounts[i]);
             }
             //}
+            
         }catch(IOException ex){
              System.out.println("Wasn't able to retrieve votesPerCandidate values from the server; using defaults.");
         }
