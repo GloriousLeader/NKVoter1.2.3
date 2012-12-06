@@ -101,6 +101,9 @@ public class konsole extends JApplet {
         this.setVisible(true);
         this.setFocusable(true);
         this.requestFocus();
+        
+        this.doLayout();
+        this.validate();
 
         try {
             String arg[] = {""};

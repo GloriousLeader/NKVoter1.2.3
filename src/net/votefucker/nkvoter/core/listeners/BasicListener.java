@@ -25,6 +25,7 @@ package net.votefucker.nkvoter.core.listeners;
 import net.votefucker.nkvoter.core.VoteReturnStatus;
 import net.votefucker.nkvoter.core.VoteWorker;
 import net.votefucker.nkvoter.core.VoteWorkerListener;
+import net.votefucker.nkvoter.timestamp.TimeStamp;
 
 /**
  * Created by Sini
@@ -39,16 +40,16 @@ public final class BasicListener extends VoteWorkerListener {
     @Override
     public void onVote(VoteReturnStatus returnStatus, VoteWorker worker) {
         if(returnStatus.equals(VoteReturnStatus.SUCCESS)) {
-            System.out.println("[worker_id=" + worker.getId() + ", candidate= " + worker.getCand() +  ", status=" + returnStatus + ", vote_total=" + ++totalCount + "] Successfully voted");
+            System.out.println("[worker_id=" + worker.getId() + ", time=" + TimeStamp.getTimeStampString() + ", candidate= " + worker.getCand() +  ", status=" + returnStatus + ", vote_total=" + ++totalCount + "] Successfully voted");
         } else {
-            System.out.println("[worker_id=" + worker.getId() + ", candidate= " + worker.getCand() + ", status=" + returnStatus + "] Vote failed to vote");
+            System.out.println("[worker_id=" + worker.getId() + ", time=" + TimeStamp.getTimeStampString() + ", candidate= " + worker.getCand() + ", status=" + returnStatus + "] Vote failed to vote");
             worker.setRunning(false);
         }
     }
 
     @Override
     public void onException(Exception ex, VoteWorker worker) {
-        System.out.println("[worker_id=" + worker.getId() + ", exception=" + ex + "] Vote worker excountered exception");
+        System.out.println("[worker_id=" + worker.getId() + ", time=" + TimeStamp.getTimeStampString() + ", candidate= " + worker.getCand() +  ", exception=" + ex + "] Vote worker excountered exception");
         worker.setRunning(false);
     }
 }
