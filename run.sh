@@ -1,2 +1,2 @@
-# Created by Sini
-java -cp ./build/classes net.sini.nkvoter.Main
+# Created by Teamn Votefucker
+java -cp ./build/classes net.votefucker.nkvoter.Main
