@@ -22,15 +22,12 @@
 
 package net.votefucker.nkvoter;
 
-import net.votefucker.nkvoter.applet.ConsoleApplet;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Scanner;
 import java.io.*;
 import java.net.URL;
 import java.util.NoSuchElementException;
-import net.votefucker.nkvoter.applet.ConsoleCanvas;
-import net.votefucker.nkvoter.applet.ConsolePanel;
 import net.votefucker.nkvoter.core.PollDaddyVoteStrategyFactory;
 import net.votefucker.nkvoter.core.VoteDispatcher;
 import net.votefucker.nkvoter.core.VoteEngine;
@@ -66,9 +63,6 @@ public final class Main {
     private static  PollDaddyVoteStrategyFactory strategyFactory;
     private static TaskManager taskManager;
     private static BasicListener listener;
-    private static ConsoleApplet voteConsole;
-    private static ConsolePanel votePanel;
-    private static ConsoleCanvas voteCanvas;
     
     /**
      * The main entry point of the program.
@@ -76,11 +70,6 @@ public final class Main {
      * @param args  The command line arguments.
      */
     public static void main(String[] args) throws Exception {
-        
-        voteConsole = new ConsoleApplet();
-        votePanel = new ConsolePanel();
-        voteCanvas = new ConsoleCanvas();
-        voteConsole.init();
 
         
         System.out.println(""
