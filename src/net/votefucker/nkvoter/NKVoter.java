@@ -105,6 +105,7 @@ public final class NKVoter {
                 if(URLamounts.equals("")) {
                     continue;
                 }
+                
                 String candidateName = candidateNames[i];//matcher.group(1);
                 amountVotes[i] = Integer.parseInt(URLamounts[i]);
             }
@@ -115,6 +116,7 @@ public final class NKVoter {
         }
            try{ for(int i=0; i<candidateNames.length; i++) {
                 voteAmounts.put(candidateNames[i], amountVotes[i]);
+                System.out.println(candidateNames[i]+" "+amountVotes[i]);
             }
            } catch (NumberFormatException e) {}
     }

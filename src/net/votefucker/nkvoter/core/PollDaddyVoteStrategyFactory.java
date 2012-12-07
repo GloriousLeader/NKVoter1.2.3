@@ -108,7 +108,7 @@ public final class PollDaddyVoteStrategyFactory extends VoteStrategyFactory {
         String[] Morsi_strings = new String[3];
         Morsi_strings[0] = "Morsi";
         Morsi_strings[1] = "/n/f5feb0194a8f56d8ffa40f1ddd6cb0af/6685628?";
-        Morsi_strings[2] = "/vote-js.php?p=6685628&b=1&a=30279854&o=&va=16&cookie=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129194%2C00.html&n=";
+        Morsi_strings[2] = "/vote-js.php?p=6685628&b=1&a=30279854&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129194%2C00.html&n=";
         candidates.put("Morsi", Morsi_strings);
         
         String[] Assad_strings = new String[3];
@@ -120,7 +120,7 @@ public final class PollDaddyVoteStrategyFactory extends VoteStrategyFactory {
         String[] ELJames_strings = new String[3];
         ELJames_strings[0] = "ELJames";
         ELJames_strings[1] = "/n/f25d6b945b051886812e322f2990bacd/6685699?";
-        ELJames_strings[2] = "/vote-js.php?p=6685699&b=1&a=30280200&o=&va=16&cookie=0&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129207%2C00.html&n=";
+        ELJames_strings[2] = "/vote-js.php?p=6685699&b=1&a=30280200&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129207%2C00.html&n=";
         candidates.put("ELJames", ELJames_strings);
         
         String[] Goodell_strings = new String[3];

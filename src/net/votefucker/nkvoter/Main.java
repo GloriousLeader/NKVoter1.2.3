@@ -57,7 +57,7 @@ public final class Main {
     /**
      * The version of NKVoter.
      */
-    public static final Version VERSION = new Version(1, 2, 4);
+    public static final Version VERSION = new Version(1, 2, 5);
     
     private static VoteEngine engine;
     private static  PollDaddyVoteStrategyFactory strategyFactory;
@@ -192,6 +192,8 @@ public final class Main {
             votesPerCandidate = new int[txtVotes.length];
             for(int i=0; i<votesPerCandidate.length; i++) {
                 try {
+                    
+                //System.out.println(txtVotes[i]);
                 votesPerCandidate[i] = Integer.parseInt(txtVotes[i]);
                 }catch(NumberFormatException en) {}
             }
