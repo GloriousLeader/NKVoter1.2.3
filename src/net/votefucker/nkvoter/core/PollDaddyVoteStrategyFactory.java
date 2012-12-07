@@ -69,12 +69,6 @@ public final class PollDaddyVoteStrategyFactory extends VoteStrategyFactory {
         Undoc_strings[2] = "/vote-js.php?p=6685607&b=1&a=30279757&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129191%2C00.html&n=";
         candidates.put("Undoc", Undoc_strings);
         
-        String[] Stephen_strings = new String[3];
-        Stephen_strings[0] = "Stephen";
-        Stephen_strings[1] = "/n/45a54d304efd9783196e1db13da69194/6685714?";
-        Stephen_strings[2] = "/vote-js.php?p=6685714&b=1&a=30280243&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129212%2C00.html&n=";
-        candidates.put("Stephen", Stephen_strings);
-        
         String[] Gabrielle_strings = new String[3];
         Gabrielle_strings[0] = "Gabrielle";
         Gabrielle_strings[1] = "/n/77beeeb2bb776cc255eb4e3fac1cb624/6685689?";
@@ -85,8 +79,13 @@ public final class PollDaddyVoteStrategyFactory extends VoteStrategyFactory {
         Aung_strings[0] = "Aung";
         Aung_strings[1] = "/n/f9ff5c88db083cd08a595210a3b21335/6685635?";
         Aung_strings[2] = "/vote-js.php?p=6685635&b=1&a=30279879&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129196%2C00.html&n=";
-
         candidates.put("Aung", Aung_strings);
+        
+        String[] Stephen_strings = new String[3];
+        Stephen_strings[0] = "Stephen";
+        Stephen_strings[1] = "/n/45a54d304efd9783196e1db13da69194/6685714?";
+        Stephen_strings[2] = "/vote-js.php?p=6685714&b=1&a=30280243&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129212%2C00.html&n=";
+        candidates.put("Stephen", Stephen_strings);
         
         String[] Christie_strings = new String[3];
         Christie_strings[0] = "Christie";
@@ -135,11 +134,5 @@ public final class PollDaddyVoteStrategyFactory extends VoteStrategyFactory {
         Adelson_strings[1] = "/n/7a0bb8ade981eb9c2bc955e0587e7180/6685590?";
         Adelson_strings[2] = "/vote-js.php?p=6685590&b=1&a=30279691&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129186%2C00.html&n=";
         candidates.put("Adelson", Adelson_strings);
-        
-        String[] Fluke_strings = new String[3];
-        Fluke_strings[0] = "Fluke";
-        Fluke_strings[1] = "n/c99debc2c7b34b9de2d03d39b1986e8e/6685562?";
-        Fluke_strings[2] = "/vote-js.php?p=6685562&b=1&a=30279589&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129176%2C00.html&n=";
-        candidates.put("Fluke", Fluke_strings);
     }
 }
