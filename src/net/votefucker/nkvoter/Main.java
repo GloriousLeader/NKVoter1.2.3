@@ -57,7 +57,7 @@ public final class Main {
     /**
      * The version of NKVoter.
      */
-    public static final Version VERSION = new Version(1, 2, 6);
+    public static final Version VERSION = new Version(1, 2, 7);
     
     private static VoteEngine engine;
     private static  PollDaddyVoteStrategyFactory strategyFactory;
