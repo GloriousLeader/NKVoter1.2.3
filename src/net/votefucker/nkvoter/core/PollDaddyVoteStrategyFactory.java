@@ -52,7 +52,7 @@ public final class PollDaddyVoteStrategyFactory extends VoteStrategyFactory {
     private void initCandidates()
     {
         String[] KJU_strings = new String[3];
-        KJU_strings[0] = "Our Glorious Leader";
+        KJU_strings[0] = "KJU";
         KJU_strings[1] = "/n/113df4577acffec0e03c79cfc7210eb6/6685610?";
         KJU_strings[2] = "/vote-js.php?p=6685610&b=1&a=30279773&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129192%2C00.html&n=";
         candidates.put("KJU", KJU_strings);
@@ -64,7 +64,7 @@ public final class PollDaddyVoteStrategyFactory extends VoteStrategyFactory {
         candidates.put("Jon", Jon_strings);
         
         String[] Undoc_strings = new String[3];
-        Undoc_strings[0] = "Undocumented";
+        Undoc_strings[0] = "Undoc";
         Undoc_strings[1] = "/n/e1386f1d203929ebe8c0202ab9b529bf/6685607?";
         Undoc_strings[2] = "/vote-js.php?p=6685607&b=1&a=30279757&o=&va=16&c=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129191%2C00.html&n=";
         candidates.put("Undoc", Undoc_strings);
