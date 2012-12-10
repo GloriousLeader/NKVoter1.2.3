@@ -9,8 +9,10 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Scanner;
 import net.votefucker.nkvoter.io.HttpProxySocket;
 import net.votefucker.nkvoter.io.SocketFactory;
+import net.votefucker.nkvoter.util.RequestBuilder;
 
 /**
  *
@@ -33,7 +35,7 @@ public class ProxySocketFactory  extends SocketFactory{
         
         if(!httpProxy){
             try{
-                proxy = new Proxy(Proxy.Type.HTTP, proxyAddress);
+                proxy = new Proxy(Proxy.Type.SOCKS, proxyAddress);
                 socket = new Socket(proxy);
                 socket.setSoTimeout(15000);
 
@@ -41,14 +43,34 @@ public class ProxySocketFactory  extends SocketFactory{
                 return socket;
             } catch(SocketException se)
             {
-                System.out.println("Trying http proxy");
                 try{
+                    System.setProperty("http.proxyHost", proxyAddress.getHostName());
+                    System.setProperty("http.proxyPort", Integer.toString(proxyAddress.getPort()));
                     socket = httpConnect(address);
                     httpProxy = true;
                     return socket;
                 } catch(IOException e)
                 {
-                    throw e;
+                    socket = new Socket();
+                    socket.setSoTimeout(15000);
+                    socket.connect(new InetSocketAddress(proxyAddress.getHostName(), proxyAddress.getPort()));
+                    RequestBuilder builder = new RequestBuilder("CONNECT", address.getHostName(), address);
+                    socket.getOutputStream().write(builder.build().getBytes());
+                    socket.getOutputStream().flush();
+        
+        /* Read the response sent from the server */
+        Scanner scanner = new Scanner(socket.getInputStream());
+        String response = "";
+        while(scanner.hasNextLine()) {
+            response += scanner.nextLine() + "\n";
+        }
+        
+        /* Check if the response was a success */
+        if(!response.contains("Connection established")) {
+            throw new IOException();
+        }
+        
+        return socket;
                 }
             }
         }

@@ -44,10 +44,18 @@ public final class PulseEngineTask extends Task {
     public PulseEngineTask(long delay, VoteEngine engine) {
         super(delay);
         this.engine = engine;
+
     }
 
     @Override
     public void execute() {                
         engine.pulse();
+                boolean firstrun = true;
+        if (!firstrun) {
+            System.out.print("Sleeping");
+        }
+        else {
+            firstrun = false;
+        }
     }
 }

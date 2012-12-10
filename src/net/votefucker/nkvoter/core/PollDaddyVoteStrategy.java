@@ -181,10 +181,14 @@ public final class PollDaddyVoteStrategy extends VoteStrategy {
      * @return          The request builder.
      */
     public RequestBuilder createRequestBuilder(String target, InetSocketAddress address) {
-        RequestBuilder builder = new RequestBuilder(target, address);
+        RequestBuilder builder = new RequestBuilder("GET", target, address);
+        builder.addHeader("Accept", "*/*");
+        builder.addHeader("Connection", "Keep-Alive");
+        builder.addHeader("Pragma", "no-cache");
         builder.addHeader("Host", "polldaddy.com");
-        builder.addHeader("Referer", "http://www.time.com/time/specials/packages/article/0,28804,2128881_2128882_2129214,00.html");
+        builder.addHeader("Referer","http://www.time.com/time/specials/packages/article/0,28804,2128881_2128882_2129214,00.html");
         builder.addHeader("User-Agent", "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.57 Safari/537.1");
         return builder;
     }
 }
+

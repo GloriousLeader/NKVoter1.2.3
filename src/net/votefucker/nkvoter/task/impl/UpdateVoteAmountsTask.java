@@ -29,6 +29,9 @@ import net.votefucker.nkvoter.task.Task;
 
 public final class UpdateVoteAmountsTask extends Task {
     
+    private boolean firstrun = true;
+
+    
     /**
      * Constructs a new {@link UpdateVoteAmountsTask};
      * 
@@ -40,6 +43,12 @@ public final class UpdateVoteAmountsTask extends Task {
 
     @Override
     public void execute() {
-        NKVoter.getSingleton().updateVoteAmounts();
-    }
+        if(!firstrun){
+            NKVoter.getSingleton().updateVoteAmounts();
+        }
+        else {
+            firstrun = false;
+        
+        }
+}
 }

@@ -69,6 +69,14 @@ public final class VoteEngine {
      * Pulses this engine.
      */
     public void pulse() {
+        boolean firstrun = true;
+        if (!firstrun) {
+            System.out.print("Sleeping");
+        }
+        else {
+            firstrun = false;
+        }
+        
         for(VoteDispatcher dispatcher : dispatchers) {
             if(!dispatcher.isRunning()) {
                 executor.execute(dispatcher);

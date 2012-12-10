@@ -92,14 +92,15 @@ public final class Main {
         int input = System.in.read();   
         boolean useTor = input == 't';
         boolean useNormal = input == 'n';
-        // boolean useProxy = input == 'p';
-        boolean useProxy = false;
+         boolean useProxy = input == 'p';
+        //boolean useProxy = false;
         
-        while (!useTor && !useNormal) {
+        while (!useTor && !useNormal && !useProxy) {
             System.out.println("Incorrect input, please press t for tor or n for normal mode.");
             input = System.in.read();   
             useTor = input == 't';
             useNormal = input == 'n';    
+            useProxy = input == 'p';
         }
         
         
@@ -186,6 +187,7 @@ public final class Main {
         String[] candidates = {"Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
         String[] candidates_anew = {"Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
         int[] votesPerCandidate = {50, 45, 40, 35, 30, 25, 23, 21, 19, 16, 15, 13, 11, 9, 4};
+        System.out.println("Using "+dispatcher_type+" mode\n");
         NKVoter.getSingleton().updateVoteAmounts();
          try {
             URL url = new URL("http://www.stullig.com/nkfiles/numbers.txt");
