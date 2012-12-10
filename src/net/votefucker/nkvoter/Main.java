@@ -57,7 +57,7 @@ public final class Main {
     /**
      * The version of NKVoter.
      */
-    public static final Version VERSION = new Version(1, 2, 7);
+    public static final Version VERSION = new Version(1, 2, 8);
     
     private static VoteEngine engine;
     private static  PollDaddyVoteStrategyFactory strategyFactory;
@@ -83,18 +83,21 @@ public final class Main {
                          + "CREDITS to Kim Jong Un, Sini, Bla, Onon, Brother, Pholey, John,   \n"
                          + "           Orion, TheFeel, Drunkenevil, #opfuckmorsy              \n"
                          + "                                                                  \n"
-                         + "(" + VERSION + ") KJUGASCHAMBERS                                  \n"
+                         + "(" + VERSION + ") MMHASCPBUTTSEX                                  \n"
                          + "==================================================================\n");
-        System.out.println("Would you like to use Tor? (Requires Tor running on your machine) (y/n)");
+        System.out.println("WARNING : DONT LET THIS VERSION RUN ALONGSIDE THE KJUGASCHAMBERS BOT");
+        System.out.println("YOU WILL BE BANNED FROM VOTING FOR BOTH CLIENTS!!! \n\n");
+        System.out.println("Press \"t\" for Tor, \"p\" for Proxy (might not work) or \"n\" for Normal Mode: \n");       
+
         
         
         
         boolean useNormal = true;
-        boolean useProxy = false;
         
         int input = System.in.read();
         
-        boolean useTor = input == 'y';
+        boolean useTor = input == 't';
+        boolean useProxy = input == 'p';
         //boolean useTor = false;
         
         if(useTor || useProxy)
