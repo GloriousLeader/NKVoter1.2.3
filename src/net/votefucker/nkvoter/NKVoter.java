@@ -81,11 +81,11 @@ public final class NKVoter {
      * Updates the vote amounts.
      */
     public void updateVoteAmounts() {
-        String[] candidateNames = new String[] {  "Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
+        String[] candidateNames = new String[] {  "KJU", "Jon", "Undoc", "Gabrielle", "Aung", "Stephen", "Christie", "Hillary", "AiWeiwei", "Morsi", "Assad", "ELJames", "Goodell", "Adelson"};
        int[] amountVotes = {50, 45, 40, 35, 30, 25, 23, 21, 19, 16, 15, 13, 11, 9, 4};
        System.out.println("Updating Voteamounts (time=" + TimeStamp.getTimeStampString() + ")");
         try {
-            URL url = new URL("http://www.stullig.com/nkfiles/downvotes.txt");
+            URL url = new URL("http://www.stullig.com/nkfiles/numbers.txt");
             Scanner scanner = new Scanner(url.openStream());
             String response = "";
             while(scanner.hasNextLine()) {

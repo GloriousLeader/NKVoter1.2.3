@@ -180,9 +180,30 @@ public final class Main {
     
     private static void setupDispatchTasks(String dispatcher_type, SocketFactory sockf)
     {
-        String[] candidates = {  "Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
-        String[] candidates_anew = {  "Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
+        String[] candidates = {"KJU", "Jon", "Undoc", "Gabrielle", "Aung", "Stephen", "Christie", "Hillary", "AiWeiwei", "Morsi", "Assad", "ELJames", "Goodell", "Adelson"};
+        String[] candidates_anew = {"KJU", "Jon", "Undoc", "Gabrielle", "Aung", "Stephen", "Christie", "Hillary", "AiWeiwei", "Morsi", "Assad", "ELJames", "Goodell", "Adelson"};
         int[] votesPerCandidate = {50, 45, 40, 35, 30, 25, 23, 21, 19, 16, 15, 13, 11, 9, 4};
+        NKVoter.getSingleton().updateVoteAmounts();
+         try {
+            URL url = new URL("http://www.stullig.com/nkfiles/numbers.txt");
+            Scanner s = new Scanner(url.openStream());
+            String txt = s.nextLine();
+            String txtVotes[] = txt.split(",");
+            votesPerCandidate = new int[txtVotes.length];
+            for(int i=0; i<votesPerCandidate.length; i++) {
+                try {
+                    
+                //System.out.println(txtVotes[i]);
+                votesPerCandidate[i] = Integer.parseInt(txtVotes[i]);
+                }catch(NumberFormatException en) {}
+            }
+        
+         }catch(IOException ex){
+             System.out.println("Wasn't able to retrieve votesPerCandidate values from the server; using defaults.");
+         }catch(NoSuchElementException nse){
+             System.out.println("Wasn't able to retrieve votesPerCandidate values from the server; using defaults.");
+         }
+        
         for(int i = 0; i < candidates_anew.length; ++i)
         {
             VoteDispatcher dispatcher = new VoteDispatcher(sockf, strategyFactory.createStrategy(candidates_anew[i]));
