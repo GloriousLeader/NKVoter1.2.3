@@ -87,21 +87,22 @@ public final class Main {
                          + "==================================================================\n");
         System.out.println("\nWARNING: DONT LET THIS VERSION RUN ALONGSIDE KJUGASCHAMBERS BOT");
         System.out.println("YOU WILL BE BANNED FROM VOTING FOR BOTH CLIENTS !!!\n");
-        System.out.println("Press t for tor or n for normal mode.");
-        
-        
-        
-        boolean useNormal = true;
+        System.out.println("Press t for tor or n for normal mode.");     
         
         int input = System.in.read();   
         boolean useTor = input == 't';
-       // boolean useProxy = input == 'p';
+        boolean useNormal = input == 'n';
+        // boolean useProxy = input == 'p';
         boolean useProxy = false;
         
-        if(useTor || useProxy)
-        {
-            useNormal = false;
+        while (!useTor && !useNormal) {
+            System.out.println("Incorrect input, please press t for tor or n for normal mode.");
+            input = System.in.read();   
+            useTor = input == 't';
+            useNormal = input == 'n';    
         }
+        
+        
         System.out.println("\n");
         System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
         System.out.println("TO AVOID GETTING BANNED. SO KEEP CALM AND BE GLORIOUS. \n");
