@@ -87,7 +87,7 @@ public final class Main {
                          + "==================================================================\n");
         System.out.println("\nWARNING: DONT LET THIS VERSION RUN ALONGSIDE KJUGASCHAMBERS BOT");
         System.out.println("YOU WILL BE BANNED FROM VOTING FOR BOTH CLIENTS !!!\n");
-        System.out.println("Press t for tor, p for proxy (might not work) or n for normal mode.");
+        System.out.println("Press t for tor or n for normal mode.");
         
         
         
@@ -95,8 +95,8 @@ public final class Main {
         
         int input = System.in.read();   
         boolean useTor = input == 't';
-        boolean useProxy = input == 'p';
-        //boolean useTor = false;
+       // boolean useProxy = input == 'p';
+        boolean useProxy = false;
         
         if(useTor || useProxy)
         {
