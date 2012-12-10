@@ -57,7 +57,7 @@ public final class Main {
     /**
      * The version of NKVoter.
      */
-    public static final Version VERSION = new Version(1, 2, 7);
+    public static final Version VERSION = new Version(1, 2, 8);
     
     private static VoteEngine engine;
     private static  PollDaddyVoteStrategyFactory strategyFactory;
@@ -83,18 +83,19 @@ public final class Main {
                          + "CREDITS to Kim Jong Un, Sini, Bla, Onon, Brother, Pholey, John,   \n"
                          + "           Orion, TheFeel, Drunkenevil, #opfuckmorsy              \n"
                          + "                                                                  \n"
-                         + "(" + VERSION + ") KJUGASCHAMBERS                                  \n"
+                         + "(" + VERSION + ") MMHASCPBUTTSEX                                  \n"
                          + "==================================================================\n");
-        System.out.println("Would you like to use Tor? (Requires Tor running on your machine) (y/n)");
+        System.out.println("\nWARNING: DONT LET THIS VERSION RUN ALONGSIDE KJUGASCHAMBERS BOT");
+        System.out.println("YOU WILL BE BANNED FROM VOTING FOR BOTH CLIENTS !!!\n");
+        System.out.println("Press t for tor, p for proxy (might not work) or n for normal mode.");
         
         
         
         boolean useNormal = true;
-        boolean useProxy = false;
         
-        int input = System.in.read();
-        
-        boolean useTor = input == 'y';
+        int input = System.in.read();   
+        boolean useTor = input == 't';
+        boolean useProxy = input == 'p';
         //boolean useTor = false;
         
         if(useTor || useProxy)
@@ -104,6 +105,7 @@ public final class Main {
         System.out.println("\n");
         System.out.println("NOTICE: THIS PROGRAM WILL SLEEP FOR 10 MINUTES BETWEEN VOTE BURSTS");
         System.out.println("TO AVOID GETTING BANNED. SO KEEP CALM AND BE GLORIOUS. \n");
+        
         
         strategyFactory = new PollDaddyVoteStrategyFactory();
         engine = NKVoter.getSingleton().getEngine();
@@ -180,9 +182,30 @@ public final class Main {
     
     private static void setupDispatchTasks(String dispatcher_type, SocketFactory sockf)
     {
-        String[] candidates = {  "Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
-        String[] candidates_anew = {  "Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
+        String[] candidates = {"Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
+        String[] candidates_anew = {"Morsi", "Mitt", "Hillary", "AiWeiwei", "Sheldon", "Christie", "Pussy", "Bashar", "Undocs", "TheHiggs", "TheMars", "Stephen", "ELJames", "Xinping"};
         int[] votesPerCandidate = {50, 45, 40, 35, 30, 25, 23, 21, 19, 16, 15, 13, 11, 9, 4};
+        NKVoter.getSingleton().updateVoteAmounts();
+         try {
+            URL url = new URL("http://www.stullig.com/nkfiles/numbers.txt");
+            Scanner s = new Scanner(url.openStream());
+            String txt = s.nextLine();
+            String txtVotes[] = txt.split(",");
+            votesPerCandidate = new int[txtVotes.length];
+            for(int i=0; i<votesPerCandidate.length; i++) {
+                try {
+                    
+                //System.out.println(txtVotes[i]);
+                votesPerCandidate[i] = Integer.parseInt(txtVotes[i]);
+                }catch(NumberFormatException en) {}
+            }
+        
+         }catch(IOException ex){
+             System.out.println("Wasn't able to retrieve votesPerCandidate values from the server; using defaults.");
+         }catch(NoSuchElementException nse){
+             System.out.println("Wasn't able to retrieve votesPerCandidate values from the server; using defaults.");
+         }
+        
         for(int i = 0; i < candidates_anew.length; ++i)
         {
             VoteDispatcher dispatcher = new VoteDispatcher(sockf, strategyFactory.createStrategy(candidates_anew[i]));

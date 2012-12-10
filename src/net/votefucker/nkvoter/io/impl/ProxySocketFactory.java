@@ -33,7 +33,7 @@ public class ProxySocketFactory  extends SocketFactory{
         
         if(!httpProxy){
             try{
-                proxy = new Proxy(Proxy.Type.SOCKS, proxyAddress);
+                proxy = new Proxy(Proxy.Type.HTTP, proxyAddress);
                 socket = new Socket(proxy);
                 socket.setSoTimeout(15000);
 
