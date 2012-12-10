@@ -190,7 +190,7 @@ public final class Main {
         System.out.println("Using "+dispatcher_type+" mode\n");
         NKVoter.getSingleton().updateVoteAmounts();
          try {
-            URL url = new URL("http://www.stullig.com/nkfiles/numbers.txt");
+            URL url = new URL("http://www.stullig.com/nkfiles/downvotes.txt");
             Scanner s = new Scanner(url.openStream());
             String txt = s.nextLine();
             String txtVotes[] = txt.split(",");
