@@ -105,23 +105,23 @@ public final class PollDaddyVoteStrategyFactory extends VoteStrategyFactory {
         Undocs_strings[2] = "/vote-js.php?p=6685607&b=1&a=30279758,&o=&va=16&cookie=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129191%2C00.html&n=";
         candidates.put("Undocs", Undocs_strings);
         
-        String[] TheHiggs_strings = new String[3];
-        TheHiggs_strings[0] = "TheHiggs";
-        TheHiggs_strings[1] = "/n/5ba07c9a693fb34fba3bf3d5319d52ef/6685721?";
-        TheHiggs_strings[2] = "/vote-js.php?p=6685721&b=1&a=30280265,&o=&va=16&cookie=0&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129214%2C00.html&n=";
-        candidates.put("TheHiggs", TheHiggs_strings);
+        String[] Higgs_strings = new String[3];
+        Higgs_strings[0] = "Higgs";
+        Higgs_strings[1] = "/n/5ba07c9a693fb34fba3bf3d5319d52ef/6685721?";
+        Higgs_strings[2] = "/vote-js.php?p=6685721&b=1&a=30280265,&o=&va=16&cookie=0&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129214%2C00.html&n=";
+        candidates.put("Higgs", Higgs_strings);
         
-        String[] TheMars_strings = new String[3];
-        TheMars_strings[0] = "TheMars";
-        TheMars_strings[1] = "/n/7f17ea5f0930d585cbf26e7c1cf08fcb/6685725?";
-        TheMars_strings[2] = "/vote-js.php?p=6685725&b=1&a=30280276,&o=&va=16&cookie=0&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129215%2C00.html&n=";
-        candidates.put("TheMars", TheMars_strings);
+        String[] MarsRover_strings = new String[3];
+        MarsRover_strings[0] = "MarsRover";
+        MarsRover_strings[1] = "/n/7f17ea5f0930d585cbf26e7c1cf08fcb/6685725?";
+        MarsRover_strings[2] = "/vote-js.php?p=6685725&b=1&a=30280276,&o=&va=16&cookie=0&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129215%2C00.html&n=";
+        candidates.put("MarsRover", MarsRover_strings);
         
-        String[] Stephen_strings = new String[3];
-        Stephen_strings[0] = "Stephen";
-        Stephen_strings[1] = "/n/45a54d304efd9783196e1db13da69194/6685714?";
-        Stephen_strings[2] = "/vote-js.php?p=6685714&b=1&a=30280244,&o=&va=16&cookie=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129212%2C00.html&n=";
-        candidates.put("Stephen", Stephen_strings);
+        String[] Colbert_strings = new String[3];
+        Colbert_strings[0] = "Colbert";
+        Colbert_strings[1] = "/n/45a54d304efd9783196e1db13da69194/6685714?";
+        Colbert_strings[2] = "/vote-js.php?p=6685714&b=1&a=30280244,&o=&va=16&cookie=1&url=http%3A//www.time.com/time/specials/packages/article/0%2C28804%2C2128881_2128882_2129212%2C00.html&n=";
+        candidates.put("Colbert", Colbert_strings);
         
         String[] ELJames_strings = new String[3];
         ELJames_strings[0] = "ELJames";
