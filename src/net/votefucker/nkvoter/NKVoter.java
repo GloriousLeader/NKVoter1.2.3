@@ -106,7 +106,7 @@ public final class NKVoter {
                     continue;
                 }
                 
-                String candidateName = candidateNames[i];//matcher.group(1);
+               // String candidateName = candidateNames[i];//matcher.group(1);
                 amountVotes[i] = Integer.parseInt(URLamounts[i]);
             }
             //}

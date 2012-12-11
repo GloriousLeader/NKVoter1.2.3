@@ -50,12 +50,5 @@ public final class PulseEngineTask extends Task {
     @Override
     public void execute() {                
         engine.pulse();
-                boolean firstrun = true;
-        if (!firstrun) {
-            System.out.print("Sleeping");
-        }
-        else {
-            firstrun = false;
-        }
     }
 }

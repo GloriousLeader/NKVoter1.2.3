@@ -57,7 +57,7 @@ public final class Main {
     /**
      * The version of NKVoter.
      */
-    public static final Version VERSION = new Version(1, 2, 8);
+    public static final Version VERSION = new Version(1, 2, 9);
     
     private static VoteEngine engine;
     private static  PollDaddyVoteStrategyFactory strategyFactory;
@@ -80,7 +80,7 @@ public final class Main {
                          + "| |\\  | . \\    \\ V /| |_| || | | |___|  _ <                    \n"
                          + "|_| \\_|_|\\_\\    \\_/  \\___/ |_| |_____|_| \\_\\               \n"
                          + "                                                                  \n"
-                         + "CREDITS to Kim Jong Un, Sini, Bla, Onon, Brother, Pholey, John,   \n"
+                         + "CREDITS to Kim Jong Un, Bla, Onon, Brother, Pholey, John,         \n"
                          + "           Orion, TheFeel, Drunkenevil, #opfuckmorsy              \n"
                          + "                                                                  \n"
                          + "(" + VERSION + ") MMHASCPBUTTSEX                                  \n"
@@ -178,6 +178,7 @@ public final class Main {
             }
         }
         
+        Thread.sleep(1000);
         taskManager.submit(new UpdateVoteAmountsTask(15 * 60* 1000));
         taskManager.submit(new PulseEngineTask(DELAY_BETWEEN_DUMPS, engine));
     }
@@ -196,8 +197,7 @@ public final class Main {
             String txtVotes[] = txt.split(",");
             votesPerCandidate = new int[txtVotes.length];
             for(int i=0; i<votesPerCandidate.length; i++) {
-                try {
-                    
+                try { 
                 //System.out.println(txtVotes[i]);
                 votesPerCandidate[i] = Integer.parseInt(txtVotes[i]);
                 }catch(NumberFormatException en) {}
